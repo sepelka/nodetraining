@@ -1,7 +1,7 @@
-getField ('{"id":"sepelka", "description":"this is my description", "type":"description", "required":true, "defValue":"This is the default value", "fSize":"35"}');
+getForm ('{"id":"sepelkaform", "step" : {"id": "step1", "group": {"id": "group1", "field": {"id":"sepelka", "description":"this is my description", "type":"description", "required":true, "defValue":"This is the default value", "fSize":"35"}}}}');
 
 function getField (field) {
-obj = JSON.parse(field);
+obj = field;
 var required="";
 var size="";
 var defValue="";
@@ -14,7 +14,6 @@ if (obj.fSize)
 if (obj.defValue)
   defValue=obj.defValue;
 
-console.log(obj);
 switch(obj.type) {
     case "name":
        htmlField=obj.description+': <input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';   
@@ -44,5 +43,53 @@ switch(obj.type) {
        htmlField=obj.description+': <input type="color" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
        break
 }
-console.log(htmlField);
+console.log("htmlField: "+htmlField+"\n");
+return(htmlField);
+}
+
+function getGroups(groups) {
+  obj = groups;
+
+  var fields=getField(obj.field);
+  
+  var headerGroups=""
+
+  htmlGroups=fields;
+  console.log("htmlGroups: "+htmlGroups+"\n");
+  return(htmlGroups);
+}
+
+function getSteps(steps) {
+  obj = steps;
+
+  var groups=getGroups(obj.group);
+  
+  var headerStep=""
+
+  htmlSteps=groups;
+  console.log("htmlSteps: "+htmlSteps+"\n");
+  return(htmlSteps);
+}
+
+function getForm(form) {
+  obj = JSON.parse(form);
+
+  var submit="";
+  var method="get";
+  var skin="fII_Form";
+
+
+  if (obj.submit)
+    submit="action="+obj.submit;
+
+  if (obj.skin)
+    skin=obj.skin;
+
+  if (obj.subMethod)
+    method=obj.subMethod;
+  
+var steps=getSteps(obj.step);
+htmlForm='<form name="'+obj.id+'" '+submit+' method="'+method+'">'+steps+'</form>';
+console.log(htmlForm);
+
 }
