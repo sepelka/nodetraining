@@ -1,7 +1,9 @@
-getForm ('{"id":"sepelkaform", "step" : {"id": "step1", "group": {"id": "group1", "field": {"id":"sepelka", "description":"this is my description", "type":"description", "required":true, "defValue":"This is the default value", "fSize":"35"}}}}');
+getForm ('{"id":"sepelkaform", "step" : [{"id": "step1", "group": [{"id": "group1", "field": [{"id":"sepelka", "description":"this is my description", "type":"description", "required":true, "defValue":"This is the default value", "fSize":"35"}, {"id":"sepelka2", "description":"this is my description", "type":"email", "required":true, "defValue":"This is the default value", "fSize":"35"}]}]}]}');
 
 function getField (field) {
 obj = field;
+
+////console.log(obj);
 var required="";
 var size="";
 var defValue="";
@@ -14,60 +16,60 @@ if (obj.fSize)
 if (obj.defValue)
   defValue=obj.defValue;
 
+var htmlFieldPre='<div class="form-group"><label for="'+obj.id+'" class="col-sm-4 control-label">'+obj.description+':</label><div class="col-sm-8">"';
+var htmlFieldPost='</div></div>';
 switch(obj.type) {
     case "name":
-       htmlField=obj.description+': <input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';   
+       htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;   
        break;
     case "address":
-       htmlField=obj.description+': <input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';   
+       htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;   
        break;
     case "date":
-       htmlField=obj.description+': <input type="date" name="'+obj.id+'"size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
+       htmlField=htmlFieldPre+'<input type="date" name="'+obj.id+'"size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;
        break
     case "search":
-       htmlField=obj.description+': <input type="search" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
+       htmlField=htmlFieldPre+'<input type="search" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;
        break
     case "email":
-       htmlField=obj.description+': <input type="email" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
+       htmlField=htmlFieldPre+'<input type="email" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;
        break
     case "money":
-       htmlField=obj.description+': <input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
+       htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;
        break
     case "telephone":
-       htmlField=obj.description+': <input type="tel" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
+       htmlField=htmlFieldPre+'<input type="tel" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;
        break
     case "description":
-       htmlField=obj.description+': <textarea name="'+obj.id+'" rows="4" cols="50" maxlength="'+obj.fSize+'" '+required+'>'+defValue+'</textarea>';
+       htmlField=htmlFieldPre+'<textarea name="'+obj.id+'" rows="4" cols="50" maxlength="'+obj.fSize+'" '+required+' class="form-control vii">'+defValue+'</textarea>'+htmlFieldPost;
        break
     case "color":
-       htmlField=obj.description+': <input type="color" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' value="'+defValue+'">';
+       htmlField=htmlFieldPre+'<input type="color" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+obj.description+'" value="'+defValue+'" class="form-control vii">'+htmlFieldPost;
        break
 }
-console.log("htmlField: "+htmlField+"\n");
-return(htmlField);
+//console.log(htmlField+'\n');
+return (htmlField);
 }
 
 function getGroups(groups) {
   obj = groups;
+  var htmlGroups="";
 
-  var fields=getField(obj.field);
-  
-  var headerGroups=""
 
-  htmlGroups=fields;
-  console.log("htmlGroups: "+htmlGroups+"\n");
+  for (field in fields=obj.field)
+    htmlGroups=htmlGroups+getField(fields[field])+"<br>";
+  //console.log(htmlGroups+'\n');
   return(htmlGroups);
 }
 
 function getSteps(steps) {
   obj = steps;
+  //console.log(obj);
+  var htmlSteps=""
 
-  var groups=getGroups(obj.group);
-  
-  var headerStep=""
-
-  htmlSteps=groups;
-  console.log("htmlSteps: "+htmlSteps+"\n");
+  for (group in groups=obj.group)
+    htmlSteps=htmlSteps+getGroups(groups[group])+"<br>";
+  //console.log(htmlSteps+'\n');
   return(htmlSteps);
 }
 
@@ -77,6 +79,7 @@ function getForm(form) {
   var submit="";
   var method="get";
   var skin="fII_Form";
+  var htmlForm="";
 
 
   if (obj.submit)
@@ -88,8 +91,11 @@ function getForm(form) {
   if (obj.subMethod)
     method=obj.subMethod;
   
-var steps=getSteps(obj.step);
-htmlForm='<form name="'+obj.id+'" '+submit+' method="'+method+'">'+steps+'</form>';
+////console.log(obj.step);
+for (step in steps=obj.step) 
+    htmlForm=htmlForm+getSteps(steps[step])+"<br>";
+
+htmlForm='<form name="'+obj.id+'" '+submit+' method="'+method+'">'+htmlForm+'</form>';
 console.log(htmlForm);
 
 }
