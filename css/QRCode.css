@@ -1,0 +1,436 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* div {
+border-style:solid;
+border-width:medium;
+}	 */
+
+#box-generator1 {
+  width: 400px;
+  margin: 10px 0;
+}
+#box-generator1 ul#generator-actions li a {
+  display: block;
+  width: 47px;	
+  height: 47px;
+  background: url('../img/QRoptions3.png') no-repeat;
+}
+#box-generator1 ul#generator-actions li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 1px 0 0;
+  float: left;
+}
+
+#QROptionsGenerator {
+  width: 400px;
+  margin: 10px 0;
+}
+#QROptionsGenerator ul#QROptionsList li a {
+  display: block;
+  width: 116px;	
+  height: 47px;
+  background: url('../img/QRoptions4.png') no-repeat;
+}
+#QROptionsGenerator ul#QROptionsList li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 1px 0 0;
+  float: left;
+}
+
+#QRResGenerator {
+  width: 400px;
+  margin: 10px 0;
+}
+#QRResGenerator ul#QRResList li a {
+  display: block;
+  width: 47px;	
+  height: 47px;
+  background: url('../img/QRoptions5.png') no-repeat;
+}
+#QRResGenerator ul#QRResList li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 1px 0 0;
+  float: left;
+}
+
+#TopMenu{
+ /* padding-top:9px; */
+  height:24px;
+}
+
+#TopMenu ul#TopMenu-options li a {
+  display: block;
+  width: 47px;	
+  height: 47px;
+  background: url('../img/QRoptions2.png') no-repeat;
+}
+ 
+#TopMenu a.homeM1,
+#TopMenu a.aboutM1,
+#TopMenu a.pricingM1,
+#TopMenu a.twitterM1,
+#TopMenu a.facebookM1,
+#TopMenu a.faqM1,
+#TopMenu a.last {
+                height:22px;
+                font-size:20px;
+                line-height:22px;
+                padding:0px 0 0 30px;
+                color:#748187;
+                text-shadow: 0 1px #FFFFFF;
+                margin:0 20px 0 0;
+                vertical-align:middle;
+                /* display:inline-block; */
+                float:left;
+}
+
+
+
+#TopMenu ul#TopMenu-options li a#M1 {
+  background-position: 0px 0px;
+}
+#TopMenu ul#TopMenu-options #M1.active {
+  background-position: 0px -56px
+}
+#box-generator1 ul#generator-actions {
+  padding: 0px 5px 0;
+}
+
+/* URL */
+#box-generator1 ul#generator-actions li a#QRt1 {
+  background-position: 0px 0px;
+}
+#box-generator1 #QRt1:hover {
+  background-position: 0px -108px  !important;
+}
+#box-generator1 #QRt1.active {
+  background-position: 0px -56px  !important;
+}
+
+/* EMAIL */
+#box-generator1 ul#generator-actions li a#QRt2 {
+  background-position: -76px 0px;
+}
+#box-generator1 #QRt2:hover{
+  background-position: -76px -108px !important;
+}
+#box-generator1 #QRt2.active {
+  background-position: -76px -56px !important;
+}
+
+/* MAP */
+#box-generator1 ul#generator-actions li a#QRt3 {
+  background-position: -684px 0px;
+}
+#box-generator1 #QRt3:hover {
+  background-position: -684px -108px  !important;
+}
+#box-generator1 #QRt3.active {
+  background-position: -684px -56px  !important;
+}
+
+/* PHONE */
+#box-generator1 ul#generator-actions li a#QRt4 {
+  background-position: -152px 0px;
+}
+#box-generator1 #QRt4:hover {
+  background-position: -152px -108px !important;
+}
+#box-generator1 #QRt4.active {
+  background-position: -152px -56px !important;
+}
+
+#QROptionsGenerator ul#QROptionsList {
+  padding: 0px 5px 0;
+}
+
+/* Color */
+#QROptionsGenerator ul#QROptionsList li a#QROpt1 {
+  background-position: 0px 0px;
+}
+#QROptionsGenerator #QROpt1:hover {
+  background-position: 0px -108px  !important;
+}
+#QROptionsGenerator #QROpt1.active {
+  background-position: 0px -56px  !important;
+}
+
+/* Image */
+#QROptionsGenerator ul#QROptionsList li a#QROpt2 {
+  background-position: -120px 0px;
+}
+#QROptionsGenerator #QROpt2:hover {
+  background-position: -120px -108px  !important;
+}
+#QROptionsGenerator #QROpt2.active {
+  background-position: -120px -56px  !important;
+}
+
+/* QRCode */
+#QRResGenerator ul#QRResList li a#QRRes1 {
+  background-position: 0px 0px;
+}
+#QRResGenerator #QRRes1:hover {
+  background-position: 0px -108px  !important;
+}
+#QRResGenerator #QRRes1.active {
+  background-position: 0px -56px  !important;
+}
+
+/* TinyURL */
+#QRResGenerator ul#QRResList li a#QRRes2 {
+  background-position: -76px 0px;
+}
+#QRResGenerator #QRRes2:hover {
+  background-position: -76px -108px  !important;
+}
+#QRResGenerator #QRRes2.active {
+  background-position: -76px -56px  !important;
+}
+
+/*
+#box-generator1 ul#generator-actions li a#QRt3 {
+  background-position: -152px 0px;
+}
+#box-generator1 #QRt3:hover, #box-generator1 #QRt3.active {
+  background-position: -152px -57px !important;
+}
+
+#box-generator1 ul#generator-actions li a#QRt5 {
+  background-position: -304px 0px;
+}
+#box-generator1 #QRt5:hover, #box-generator1 #QRt5.active {
+  background-position: -304px -57px !important;
+}
+#box-generator1 ul#generator-actions li a#QRt6 {
+  background-position: -381px 0px;
+}
+#box-generator1 #QRt6:hover, #box-generator1 #QRt6.active {
+  background-position: -381px -57px !important;
+}
+#box-generator1 ul#generator-actions li a#QRt7 {
+  background-position: -457px 0px;
+}
+#box-generator1 #QRt7:hover, #box-generator1 #QRt7.active {
+  background-position: -457px -57px !important;
+}
+#box-generator1 ul#generator-actions li a#QRt8 {
+  background-position: -533px 0px;
+}
+#box-generator1 #QRt8:hover, #box-generator1 #QRt8.active {
+  background-position: -533px -57px !important;
+}
+#box-generator1 ul#generator-actions li a#QRt9 {
+  background-position: -609px 0px;
+}
+#box-generator1 #QRt9:hover, #box-generator1 #QRt9.active {
+  background-position: -609px -57px !important;
+}
+#box-generator1 ul#generator-actions li a#QRt10 {
+  background-position: -685px 0px;
+}
+#box-generator1 #QRt10:hover, #box-generator1 #QRt10.active {
+  background-position: -685px -57px !important;
+}
+#box-generator1 ul#generator-actions li a#QRt11 {
+  background-position: -761px 0px;
+}
+#box-generator1 #QRt11:hover, #box-generator1 #QRt11.active {
+  background-position: -761px -57px !important;
+}*/
+
+#emailD {
+	display:none;
+	width: 100%;
+  }
+#urlD {
+	clear:both;
+	width: 100%;
+}
+#mapD {
+	display:none;
+	width: 100%;
+}
+#phoneD {
+	display:none;
+	width: 100%;
+}
+#colorpicker {
+	clear:both;
+	width: 100%;
+	 }
+#picPicker {
+	display:none;
+	width: 100%;
+	 } 
+#QRCodeImage {
+	display:none;
+	width: 100%;
+	 }
+	 
+#QRCodeTiny {
+	display:none;
+	width: 100%;	
+	 }
+#QRResGenerator, #QRCodeCT, #QRCodePT, #myCanvas, #PictoQR {
+    display:none;
+}
+
+#header {
+	display: block;
+margin:20px auto;
+max-width: 626px;
+min-width: 323px;
+max-height: 124px;
+min-height: 62px;
+	
+	}
+
+.QRform {
+	float:left;
+background-color: #fff;
+border-top-style: solid;
+border-width: 1px;
+border-color: #ddd;
+border-radius: 4px 4px 0 0;
+box-shadow: none;
+position: relative;
+padding: 15px 40px 15px 40px;
+	}
+
+   .affiliateAds{
+	float: left;
+}	
+  .adsSep {
+	height: 10px;
+	clear: both;
+  }
+  
+  #DownldQA, backToGame {
+	height: 100px;
+    margin: auto;
+    max-width: 200px;
+	clear: both; 
+	overflow: hidden;
+	padding-top: 20px
+	}
+	
+	#readyIMG {
+	height: 100px; 
+    margin: auto;
+    max-width: 400px;
+	clear: both; 
+	overflow: hidden;
+	padding-top: 20px;
+	color: #428bca;
+	font-size: 14px;
+    font-weight: 500;
+    line-height: 1.428571429;
+    text-align: center;
+	}
+
+/* IPHONE 5 and (orientation:portrait)  */
+.feature {
+width: 100%;
+}
+
+.feaTitle {
+background: #5a83e1;
+}
+
+.featureHeader {
+font-family: 'source_sans_prolight';
+font-size: 32px;
+color: #FFFFFF;
+padding: 10px 0 10px 0;
+font-weight: normal;	
+text-align: center;
+/*background: url(../img/body_row_arrow.gif) no-repeat bottom center;*/
+/*padding-bottom: 19px;*/}
+
+.featureBody {
+	margin-top:35px;
+	font-size: 20px;
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featureBody2: after { content: ''; clear: both; visibility: hidden; }
+.featureBody2 img { float: right; margin: 0 20px 20px 20px; }
+.featureBody img { float: left; margin: 0 20px 20px 20px; }
+.featureBodyText   { margin:35px 0 0 20px;font-size: 20px; }
+
+@media only screen and (orientation:portrait), only screen and (max-width: 480px), only screen and (min-device-width : 320px) and (max-device-width : 568px)  {
+  #QRGenerator, #QRCodeDWLNZone {
+	/* height: 850px; */
+    margin: 20px auto 0;
+    max-width: 400px;
+}
+  #QRSelector, #ctlDWLNZone {
+	clear:both;
+	margin:auto;
+    width: 312px;
+  }
+	
+  #QROptions{
+	clear:both;
+	width: 312px;
+	margin:auto;
+  }
+  #QRCodeZone{
+	clear:both;
+    width: 312px;
+	margin:auto;
+  }
+  .StepSet{
+	  clear:both;
+	  height:10px;
+	  }
+  .QRform {
+border-style: solid;
+	}
+   .theAds{
+	margin-top: 20px;
+	float: left;
+}	
+<meta name="viewport" content="width=device-width">
+}
+  
+@media only screen and (orientation:landscape) and (min-width: 650px) {
+  #QRGenerator, #QRCodeDWLNZone {
+	/* height: 450px; */
+    margin: 40px auto 0;
+    width: 860px;
+	min-height: 430px;
+}
+  #QRSelector, #ctlDWLNZone  {
+	float:left;
+	width: 312px;
+  }
+  #QROptions {
+	float:left;
+	width: 250px;	
+  }
+  #QRCodeZone {
+	float: left;  
+    width: 280px;	
+	}
+  .StepSet{
+	  float:left;
+	  width:2px;
+	  }
+  .theAds{
+	margin-top: 5px;
+	float: right;
+  }
+} 
+
+}

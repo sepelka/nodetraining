@@ -1,0 +1,370 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.error {
+    color: #B94A48;
+}
+#nutritionfacts {
+    background-color: white;
+    border: 1px solid black;
+    padding: 3px;
+    width: 244px;
+}
+#nutritionfacts select {
+    font-family: Arial;
+    width: 100%;
+}
+#nutritionfacts td {
+    color: black;
+    font-family: Arial Black;
+    font-size: 8pt;
+    padding: 0;
+}
+#nutritionfacts td.header {
+    font-family: Arial Black;
+    font-size: 28px;
+    white-space: nowrap;
+}
+#nutritionfacts div.line {
+    border-top: 1px solid black;
+}
+#nutritionfacts div.label {
+    float: left;
+    font-family: Arial Black;
+}
+#nutritionfacts div.labellight {
+    float: left;
+    font-family: Arial;
+}
+#nutritionfacts div.weight {
+    display: inline;
+    font-family: Arial;
+    padding-left: 1px;
+}
+#nutritionfacts div.dvlabel {
+    font-family: Arial Black;
+    font-size: 7pt;
+    text-align: right;
+}
+#nutritionfacts div.dv {
+    display: inline;
+    float: right;
+    font-family: Arial Black;
+}
+#nutritionfacts td.indent {
+    padding-left: 10px;
+}
+#nutritionfacts div.serving {
+    font-family: Arial;
+    font-size: 8pt;
+}
+#nutritionfacts table.info td {
+    font-family: Helvetica,Arial;
+    font-size: 6pt;
+}
+#nutritionfacts table.info td.indent {
+    padding-left: 4pt;
+}
+#nutritionfacts table.vitamins {
+    border-collapse: collapse;
+    margin-bottom: 3px;
+    width: 100%;
+}
+#nutritionfacts table.vitamins td {
+    font-family: Arial;
+    white-space: nowrap;
+    width: 33%;
+}
+#nutritionfacts1 .label h3 {
+    color: #000000;
+    display: inline;
+    font-family: Arial Black;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+#nutritionfacts1 .labellight h3 {
+    color: #000000;
+    display: inline;
+    font-family: Arial Black;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+#nutritionfacts1 td h3 {
+    color: black;
+    display: inline;
+    font-family: Arial;
+    font-size: 8pt;
+    margin: 0;
+    padding: 0;
+}
+#nutritionfacts1 {
+    background-color: white;
+    border: 1px solid black;
+    padding: 3px;
+    width: 326px;
+}
+#nutritionfacts1 select {
+    font-family: Arial;
+    width: 100%;
+}
+#nutritionfacts1 td {
+    color: black;
+    font-family: Arial Black;
+    font-size: 8pt;
+    padding: 0;
+}
+#nutritionfacts1 td.header {
+    font-family: Arial Black;
+    font-size: 28px;
+    white-space: nowrap;
+}
+#nutritionfacts1 div.line {
+    border-top: 1px solid black;
+}
+#nutritionfacts1 div.label {
+    float: left;
+    font-family: Arial Black;
+}
+#nutritionfacts1 div.labellight {
+    float: left;
+    font-family: Arial;
+}
+#nutritionfacts1 div.weight {
+    display: inline;
+    font-family: Arial;
+    padding-left: 1px;
+}
+#nutritionfacts1 div.dvlabel {
+    font-family: Arial Black;
+    font-size: 7pt;
+    text-align: right;
+}
+#nutritionfacts1 div.dv {
+    display: inline;
+    float: right;
+    font-family: Arial Black;
+}
+#nutritionfacts1 td.indent {
+    padding-left: 10px;
+}
+#nutritionfacts1 div.serving {
+    font-family: Arial;
+    font-size: 8pt;
+}
+#nutritionfacts1 table.info td {
+    font-family: Helvetica,Arial;
+    font-size: 6pt;
+}
+#nutritionfacts1 table.info td.indent {
+    padding-left: 4pt;
+}
+#nutritionfacts1 table.vitamins {
+    border-collapse: collapse;
+    margin-bottom: 3px;
+    width: 100%;
+}
+#nutritionfacts1 table.vitamins td {
+    font-family: Arial;
+    white-space: nowrap;
+    width: 33%;
+}
+.control-group.warning .warning-inline {
+  color: #c09853;
+  display: inline;
+}
+.control-group.error .error-inline {
+  color: #b94a48;
+  display: inline;
+}
+.control-group.success .success-inline {
+  color: #468847;
+  display: inline;
+}
+.warning-inline,
+.error-inline,
+.error-inline {
+  display: none;
+}
+
+.control-group.error .help-inline,
+.control-group.warning .help-inline{
+  display: none;
+}
+#topMenu {
+display: block;
+margin: auto;
+height: 30px;
+max-width: 860px;
+min-width: 323px;
+padding:0 10px 0 10px;
+}
+
+#topHeader{
+display: block;
+margin: auto;
+max-width: 860px;
+min-width: 323px;
+padding:0 10px 0 10px;
+}
+
+#mainCampaign {
+display: block;
+margin:40px auto 0;
+max-width: 626px;
+min-width: 323px;
+padding:0 10px 0 10px;	
+}
+
+#topLogo, #pStatus {
+width: 100%;
+display: block;
+}
+
+#topLogo img{
+	width: 100%;
+height: auto;
+}
+
+#topMenu ul li{
+display: inline;
+list-style-type: none;
+padding: 0 40px 0 10px;
+line-height:30px;
+}
+
+#theMenu{
+float: left;
+}
+
+#login{
+float: right;
+position: relative;
+}
+
+/* #topMenu ul li::before {
+display: block;	
+-webkit-border-radius: 23px;
+-moz-border-radius: 23px;
+-ms-border-radius: 23px;
+border-radius: 23px;
+height: 0;
+width: 0;	
+margin-left: -45px;
+background: #cf1c5a;
+color: #fff;
+content: '?';
+border: none;
+width: 25px;
+height: 25px;
+text-align: center;}*/
+
+.HomeContainer{
+background-color: #3D7199;
+    border: 2px solid #D2DDE5;
+    cursor: pointer;
+    height: 165px;
+    margin: 18px 0px;	
+    width: 100%;
+	float:left;
+}
+#play-video img {
+    height: auto;
+    margin-top: 40px;
+    opacity: 0.8;
+    width: 86px;
+}
+
+#play-video {
+	text-align: center;
+	cursor: pointer;
+}
+
+#lPopUp {
+	background-color: #f5f5f5;
+border: 1px solid #e3e3e3;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+	position: absolute;
+	display:none;
+	width: 300px;
+	z-index: 1003;
+	right: 0px;
+}
+
+#QRCode2 {
+background-color: 
+rgba(0, 0, 0, 0);
+box-shadow: rgb(170, 170, 170) 0px 0px 10px 0px;
+color: 
+rgb(51, 51, 51);
+height: 200px;
+width: 200px;}
+
+#landingPage  {
+    height: 600px;
+    margin: 10px auto 0;
+	top:50%;
+	max-width: 850px;
+	min-width: 500px;
+	padding: 10px;
+}
+
+.homeForm {
+    background-color: #FFF;
+	border: 2px solid #E5E5E5;
+	width:100%;
+}
+
+#landLeft {
+	width:405px;
+	margin:4px;	
+	float:left;
+}
+
+#landRight {
+	width:405px;
+	margin:4px;	
+	float:right;
+}
+
+.btn-home {
+    background-color: #3D7199;
+    background-image: linear-gradient(to bottom, #0088CC, #3D7199);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-home:hover {
+  color: #ffffff;
+  background-color: #3D7199;
+}
+
+.btn-home:active {
+  background-color: #003399 \9;
+}
+
+@media only screen and (orientation:portrait), only screen and (max-width: 480px), only screen and (min-device-width : 320px) and (max-device-width : 568px)  {
+#topMenu ul li{
+display: inline;
+list-style-type: none;
+padding: 0 10px 0 10px;
+line-height:30px;
+}	
+}
+  
+@media only screen and (orientation:landscape) and (min-width: 650px) {
+#topMenu ul li{
+display: inline;
+list-style-type: none;
+padding: 0 40px 0 10px;
+line-height:30px;
+}
+} 
