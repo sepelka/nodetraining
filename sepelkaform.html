@@ -6,9 +6,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/valinit.css" rel="stylesheet" media="screen">
 <link href="css/whazinit.css" rel="stylesheet" media="screen">
-<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script async="" src="http://www.google-analytics.com/analytics.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/valinit.min.js"></script>
+<script src="js/valinit.js"></script>
 <script src="js/whazinit.js"></script>
 <body>
 <div id="topHeader" style="background-color: #f5f5f5; border: 1px solid #e3e3e3; max-width:2560px; height:35px; min-width: 480px;">
@@ -50,8 +50,8 @@
   <div class="adsSep"></div>
   <div class="adsSep"></div>
   <div id="wiiWid1Wrapper" style="min-width:480px; max-width:800px; margin:auto">
-  	<div id="wiiWid1" style="width=90%; margin:auto">
-  	  <form name="sepelka2"  method="get"class="form-horizontal" role="form"><legend>This is the description of my form</legend><div class="form-group"><div class="form-group" style="width:100%"><label for="sepelka" class="col-sm-4 control-label">this is my description:</label><div class="col-sm-8"><textarea name="sepelka" rows="4" cols="50" maxlength="35" required class="form-control vii">This is the default value</textarea></div></div><br><div class="form-group" style="width:100%"><label for="sepelka2" class="col-sm-4 control-label">this is my description:</label><div class="col-sm-8"><input type="email" name="sepelka2" size="35" required placeholder="this is my description" value="This is the default value" class="form-control vii"></div></div><br><br><br></div></form>
+  	<div id="wiiWid1" style="width:90%; margin:auto">
+  	  <form name="sepelkaform" id="sepelkaform"method="get"class="form-horizontal" role="form"><legend>This is the description of my form</legend><div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group"><div class="form-group" style="width:100%"><label for="Email" class="col-sm-4 control-label">Email:</label><div class="col-sm-8"><input type="email" name="Email" size="35" undefined placeholder="" value="sepelus@gmail.com" class="form-control viiemail "></div></div><br><div class="form-group" style="width:100%"><label for="Name" class="col-sm-4 control-label">Name:</label><div class="col-sm-8"><input type="text" name="Name" size="35" required placeholder="Name" value="" class="form-control vii"></div></div><br><div class="form-group" style="width:100%"><label for="Surname" class="col-sm-4 control-label">Surname:</label><div class="col-sm-8"><input type="text" name="Surname" size="35" required placeholder="Your Surname" value="" class="form-control vii"></div></div><br><div class="form-group" style="width:100%"><label for="Password" class="col-sm-4 control-label">Password:</label><div class="col-sm-8"><input type="Password" name="Password" size="35" required placeholder="Your Password" value="" class="form-control vii"></div></div><br><div class="form-group" style="width:100%"><label for="Password2" class="col-sm-4 control-label">Re-type password:</label><div class="col-sm-8"><input type="Password" name="Password2" size="35" required placeholder="Re-type your password" value="" class="form-control vii"></div></div><br><div class="form-group" style="width:100%"><label for="sepelka" class="col-sm-4 control-label">:</label><div class="col-sm-8"><textarea name="sepelka" rows="4" cols="50" maxlength="35" undefined class="form-control ">This is the default value</textarea></div></div><br><br><br></div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$('#compID').click(function (e) {if (!valInIt('sepelkaform')){var request=$.ajax({type: "POST", data: $('#sepelkaform').serialize(),url: "registerHero.php", dataType: "html"});request.done( function(data) { $("#mainMessage").html(data);$("#SignUp2").hide();$("#SignUp1").hide();})}});</script>
     </div>
   </div>  	
   </body>

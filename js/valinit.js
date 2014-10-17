@@ -104,7 +104,7 @@ function valInIt(formID) {
 	else
 	 {$('#'+formID+' .viierror').removeClass("viiShowTime");}
 	if (viiCrST==true)
-	 {alert("pasando por aqui");$('#'+formID+' .viicorrection').addClass("viiShowTime");}
+	 {$('#'+formID+' .viicorrection').addClass("viiShowTime");}
 	else
 	 {$('#'+formID+' .viicorrection').removeClass("viiShowTime");}
 	 
