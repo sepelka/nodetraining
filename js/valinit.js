@@ -3,7 +3,60 @@ var email1 = new RegExp("^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(
 var email = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 var pwd1 = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/;
 var pwd = /(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/;
+var num = /(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/;
 
+var msgs={
+"required" : "All fields in Yellow are mandatory. Please fill them in to continue.",
+"valTo" : "",
+"eqTo" : "%S has a different value than %D",
+"Min" : "%S has to be higher than %L",
+"Max" : "%S has to be lower than %L",
+"MinTo" : "%S has to be higher than %D",
+"MaxTo" : "%S has to be lower than %D"
+}
+
+function inputKO(elementID){
+	$(elementID).removeClass( "viitext" );
+    $(elementID).addClass( "viiShowTime" );	
+}
+
+function inputOK(elementID){
+  $(elementID).addClass( "viitext" );
+  $(elementID).removeClass( "viiShowTime" );		
+}
+
+function addCorrection (inputID, type) {
+	$(inputID).addClass( "viiInputCorrection" );
+	inputKO("#"+type+inputID.name);
+	removeMandatory  (inputID);
+	return (true);	
+}
+function addMandatory (inputID){
+	$(inputID).addClass( "viiInputMandatory" );
+	inputKO("#vii"+inputID.name);
+	removeCorrection (inputID);
+	return (true);	
+}
+
+function removeMandatory  (inputID){
+	$(inputID).removeClass( "viiInputMandatory" );
+	inputOK("#vii"+inputID.name);
+}
+
+function removeCorrection (inputID){
+	$(inputID).removeClass( "viiInputCorrection" );
+	if ($(inputID).is("[class*='vii']"))
+	$($(inputID).attr('class').split(' ')).each(function() {
+		if (this.match("^viieq")){
+	      inputOK("#viieq"+inputID.name);}
+		else if (this.match("^vii")){ 
+		  inputOK("#"+this+inputID.name);}
+	});	
+}
+function removeError(inputID){
+	removeMandatory  (inputID);
+	removeCorrection (inputID);
+	}
 
 function valInIt(formID) {
     // get all the inputs into an array.
@@ -16,88 +69,59 @@ function valInIt(formID) {
 		   if ($(this).val()=="")
 		    {
 		      if ($(this).hasClass("vii"))
-		      {
-			    $(this).addClass( "viiInputMandatory" );
-			    viiInputST="vii";
-			  }
+			    viiST=addMandatory (this);
 			  else
-			    $(this).removeClass( "viiInputMandatory" );
-				$(this).removeClass( "viiInputCorrection" );
+			    removeError(this);
 			}
 		   else
 			{
 			   if ($(this).hasClass("viiemail"))
 		        {
 			      if (email.test($(this).val()))
-			       {  
-			         $(this).removeClass( "viiInputCorrection" );
-					 $(this).removeClass( "viiInputMandatory" );		 
-			       }
+			       removeError(this);
 			      else
-			       {
-			         $(this).addClass( "viiInputCorrection" );
-			         viiInputST="viiemail";
-				   }
+			       viiCrST=addCorrection (this,"viiemail");
 				}
 			   else
 			    {
 			      if ($(this).hasClass("viipwd"))
 		            {
 			          if (pwd.test($(this).val()))
-			           {
-					     $(this).removeClass( "viiInputCorrection" );
-					     $(this).removeClass( "viiInputMandatory" );	   
-			           }
+			           removeError(this);
 			          else
-			           {
-			             $(this).addClass( "viiInputCorrection" );
-			             viiInputST="viipwd";
-					   }
+			           viiCrST=addCorrection (this,"viipwd");
 					 }
 					else
 					 {   
 					   if ($(this).hasClass("viinum"))
 		                {
-			              if (pwd.test($(this).val()))
-			                {  
-			                  $(this).removeClass( "viiInputCorrection" );
-					          $(this).removeClass( "viiInputMandatory" );	 
-			                }
+			              if (num.test($(this).val()))
+			                removeError(this);
 			              else
-			                {
-			                  $(this).addClass( "viiInputCorrection" );
-			                  viiInputST="viinum";
-			                 }
-		                  }
-						else
+			                viiCrST=addCorrection (this,"viinum");
+		                 }
+					    else
 						 {
-					       $(this).removeClass( "viiInputCorrection" );
-					       $(this).removeClass( "viiInputMandatory" );	  
-			             }
+						  if ($(this).is("[class*='viieq']"))
+						   {
+						     myInput=this;
+							 $($(this).attr('class').split(' ')).each(function() {
+			                 if (this.match("^viieq")){
+			                   if (this.substring(5,1)!="%" || this.substring(5,3)=="%F%"){
+							     if ($(myInput).val()==$("#"+this.substring(5).replace("%F%","")).val())
+							       removeError(myInput);
+							     else
+							       viiCrST=addCorrection (myInput,"viieq");}}
+							 });
+						   }
+						  else 
+					       removeError(this);
+						 }
 		              }
-			       }
-		        } 
-		if (viiInputST!="NVal")
-		 { 
-		   $("#"+viiInputST+this.name).removeClass( "viitext" );
-		   $("#"+viiInputST+this.name).addClass( "viiShowTime" );
-		   if (viiInputST=="vii")
-		     viiST=true;
-		   else
-		     viiCrST=true;
-		 }
-	    else
-		 {
-		   $("#"+viiInputST+this.name).removeClass( "viiShowTime" );
-		   $("#"+viiInputST+this.name).addClass( "viitext" ); 
-		 }		
+			     }
+		   } 	
     });
 	
-	var $inputs = $('input[class^="viieq"]');
-	$inputs.each(function()
-	 {
-		 
-	 });
 	
 	if (viiST==true)
 	 {$('#'+formID+' .viierror').addClass("viiShowTime");}
