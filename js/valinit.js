@@ -58,6 +58,27 @@ function removeError(inputID){
 	removeCorrection (inputID);
 	}
 
+function createDependency(inputSource, inputDest){
+
+alert("creando dependencia para #"+inputSource);
+$('#'+inputSource).change(function(e){
+	alert("vaya me estan espiando....");
+if (!valInIt('signUp2Form')){
+var request=$.ajax({
+        type: "POST",
+        data: $('#signUp2Form').serialize(),
+        url: "./registerHero.php",
+		dataType: "html"
+    });
+
+request.done( function(data) 
+{ 
+$("#mainMessage").html(data);
+$("#SignUp2").hide();
+$("#SignUp1").hide();
+})}});
+
+}
 function valInIt(formID) {
     // get all the inputs into an array.
     var $inputs = $('#'+formID+' :input');
@@ -115,7 +136,23 @@ function valInIt(formID) {
 							 });
 						   }
 						  else 
-					       removeError(this);
+						   {
+						   	if ($(this).is("[class*='viifiltby']"))
+						     {
+						     	myInput=this;
+						     	$($(this).attr('class').split(' ')).each(function() {
+			                    if (this.match("^viifiltby")){
+			                      if (this.substring(9,1)!="%" || this.substring(9,3)=="%F%"){
+						     	    createDependency(this.substring(9).replace("%F%",""), myInput.id);}
+						     	    // )
+						     	}
+						      })
+
+						     }
+						    else
+						      removeError(this);  
+						   }
+					       
 						 }
 		              }
 			     }
