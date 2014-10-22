@@ -130,7 +130,7 @@ switch(obj.type) {
        break 
      case "list":
       if (dependencies=="") {
-        htmlField=htmlFieldPre+'<select name="'+obj.id+'" id="'+obj.id+'"" size="'+obj.fSize+'" '+required+' class="form-control '+validations+" "+dependencies+'"">';
+        htmlField=htmlFieldPre+'<select name="'+obj.id+'" id="'+obj.id+'"" size="'+obj.fSize+'" '+required+' class="form-control '+validations+" "+dependencies+'"">';  
         console.log("los valores son: "+obj.values1);
         obj.values1.forEach( function(element){
         htmlField=htmlField+'<option value="'+element+'">'+element+'</option>';
@@ -140,13 +140,14 @@ switch(obj.type) {
       else {
         console.log("los valores son los siguientes: "+obj.values1);
         htmlField=htmlFieldPre+'<select name="'+obj.id+'" id="'+obj.id+'"" size="'+obj.fSize+'" '+required+' disabled class="form-control '+validations+" "+dependencies+'"></select>'+htmlFieldPost;
-        theScript=theScript+"var "+obj.id+"FData=[];"
+          theScript=theScript+"var arr"+obj.id+"=[];";
         obj.values1.forEach(function (element){
-          theScript=theScript+obj.id+"FData['"+element.filter+"']=[";
+          theScript=theScript+"arr"+obj.id+"['"+element.filter+"']=[";
           for (data in element.values1)
             theScript=theScript+"'"+element.values1[data]+"',";
           theScript=theScript.substring(0, theScript.length - 1)+"];";
         })
+        theScript=theScript+"formData['"+obj.id+"']=arr"+obj.id+";";
         //theScript=theScript+"var "+obj.id+"FData;"["Saab", "Volvo", "BMW"];
         console.log("que va en el script: "+theScript);
       }
@@ -220,7 +221,7 @@ function createHTML(Template, Widgets) {
   var newPage;
   var widgetsObj = JSON.parse(Widgets);
   widgetsObj.forEach(function (obj, index) {
-    newPage=Template.replace("<"+obj.widName+">", getForm(obj.eleName));
+    newPage=Template.replace("<"+obj.widName+">", "<script>var formData=[];;</script>"+getForm(obj.eleName));
   })
   return newPage;
 }

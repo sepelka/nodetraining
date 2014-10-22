@@ -60,25 +60,16 @@ function removeError(inputID){
 
 function createDependency(inputSource, inputDest){
 
-alert("creando dependencia para #"+inputSource);
+//alert("creando dependencia para #"+inputSource);
 $('#'+inputSource).change(function(e){
-	alert("vaya me estan espiando....");
-if (!valInIt('signUp2Form')){
-var request=$.ajax({
-        type: "POST",
-        data: $('#signUp2Form').serialize(),
-        url: "./registerHero.php",
-		dataType: "html"
-    });
-
-request.done( function(data) 
-{ 
-$("#mainMessage").html(data);
-$("#SignUp2").hide();
-$("#SignUp1").hide();
-})}});
-
+var data= formData[inputDest][$(this).val()];
+var selOptions="";	
+for (x in data)
+	selOptions=selOptions+"<option value="+data[x]+">"+data[x]+"</option>";
+$('#'+inputDest).replaceWith( '<select name="campo2" id="campo2" "="" size="0" class="form-control">'+selOptions+'</select>');
+});
 }
+
 function valInIt(formID) {
     // get all the inputs into an array.
     var $inputs = $('#'+formID+' :input');
