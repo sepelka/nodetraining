@@ -1,7 +1,7 @@
-// getForm ('{"id":"sepelkaform", "step" : [{"id": "step1", "group": [{"id": "group1", "field": [{"id":"sepelka", "description":"this is my description", "type":"description", "required":true, "defValue":"This is the default value", "fSize":"35"}, {"id":"sepelka2", "description":"this is my description", "type":"email", "required":true, "defValue":"This is the default value", "fSize":"35"}]}]}]}');
+
 
 var theScript="";
-createPage("sepelkaform.html","./formTemplate.html", '[{"widName":"wiiGap1", "eleName": {"id":"sepelkaform", "title":"Complete your Registration", "submit":"registerHero.php", "step" : [{"id": "step1", "group": [{"id": "group1", "field": [{"id":"Email", "title":"Email", "description":"Email", "type":"email", "required":false, "defValue":"sepelus@gmail.com", "fSize":"35"},{"id":"Name", "title":"Name", "placeholder":"Name", "type":"name", "required":true, "fSize":"35"},{"id":"Surname", "title":"Surname", "placeholder":"Your Surname", "type":"name", "required":true, "fSize":"35"}, {"id":"Password", "title":"Password", "placeholder":"Your Password", "type":"password", "required":true, "fSize":"35"}, {"id":"Password2", "title":"Re-type password","placeholder":"Re-type your password", "type":"password", "required":true, "fSize":"35", "validations": {"eqTo": {"field" : "Password", "msg":"%S has a different value than %D"}}},{"id":"campo1", "title":"Mi Campo 1", "description":"Este es un campo que pone el filtro", "type":"list", "values1":["US","ES"]},{"id":"campo2", "title":"Mi Campo 2", "description":"Este es un campo que coge el filtro", "type":"list", "dependencies": {"filterBy": "campo1"}, "values1":[{"filter":"US","values1":["test 1","test 2"]},{"filter":"ES","values1":["test 3","test 4"]}]}]}]}]}}]') 
+
 
 function getDependencies(field, dependencies) {
   var dependencyTags="";
@@ -97,6 +97,8 @@ if(obj.validations)
 var htmlFieldPre='<div class="form-group" style="width:100%"><label for="'+obj.id+'" class="col-sm-4 control-label">'+title+':</label><div class="col-sm-8">';
 var htmlFieldPost='</div></div>';
 
+"Name","Address", "Date", "Search", "Email", "Money", "Telephone", "Description", "Color","Password","List"
+
 switch(obj.type) {
     case "name":
        htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;   
@@ -133,7 +135,10 @@ switch(obj.type) {
         htmlField=htmlFieldPre+'<select name="'+obj.id+'" id="'+obj.id+'"" size="'+obj.fSize+'" '+required+' class="form-control '+validations+" "+dependencies+'"">';  
         console.log("los valores son: "+obj.values1);
         obj.values1.forEach( function(element){
-        htmlField=htmlField+'<option value="'+element+'">'+element+'</option>';
+          if (defValue==element)
+            htmlField=htmlField+'<option value="'+element+'" selected="selected">'+element+'</option>';
+          else
+           htmlField=htmlField+'<option value="'+element+'">'+element+'</option>'; 
          })
         htmlField=htmlField+"</select>"+htmlFieldPost;
        }
@@ -180,7 +185,9 @@ function getSteps(steps) {
   return(htmlSteps);
 }
 
-function getForm(form) {
+module.exports = {
+
+  getForm : function (form) {
   //obj = JSON.parse(form);
 
   var obj = form;
@@ -215,26 +222,4 @@ for (step in steps=obj.step)
 htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) { $("#mainMessage").html(data);$("#SignUp2").hide();$("#SignUp1").hide();})}});</script>';
 return(htmlForm+"<script>"+theScript+"</script>");
 
-}
-
-function createHTML(Template, Widgets) {
-  var newPage;
-  var widgetsObj = JSON.parse(Widgets);
-  widgetsObj.forEach(function (obj, index) {
-    newPage=Template.replace("<"+obj.widName+">", "<script>var formData=[];;</script>"+getForm(obj.eleName));
-  })
-  return newPage;
-}
-
-function createPage(PageName, TemplateFile, Widgets) {
- fs=require('fs');
-  fs.readFile(TemplateFile, {encoding:'utf8'}, function (err, data) {
-    if (err) throw err;
-    newPageHTML=createHTML(data, Widgets);
-    fs.writeFile(PageName, newPageHTML, function (err) {
-      if (err) throw err;
-      console.log('File '+PageName+' has been created!');
-    });
-  });
-  //console.log(newPageHTML);
-}
+}}
