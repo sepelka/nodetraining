@@ -101,7 +101,7 @@ var htmlFieldPost='</div></div>';
 
 switch(obj.type) {
     case "name":
-       htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;   
+       htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" id="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;   
        break;
     case "address":
        htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;   
@@ -122,7 +122,7 @@ switch(obj.type) {
        htmlField=htmlFieldPre+'<input type="tel" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;
        break
     case "description":
-       htmlField=htmlFieldPre+'<textarea name="'+obj.id+'" rows="4" cols="50" maxlength="'+obj.fSize+'" '+required+' class="form-control '+viiReq+validations+'"">'+defValue+'</textarea>'+htmlFieldPost;
+       htmlField=htmlFieldPre+'<textarea name="'+obj.id+'" id="'+obj.id+'" rows="4" cols="50" maxlength="'+obj.fSize+'" '+required+' class="form-control '+viiReq+validations+'"">'+defValue+'</textarea>'+htmlFieldPost;
        break
     case "color":
        htmlField=htmlFieldPre+'<input type="color" name="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control viipwd '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;
@@ -217,7 +217,7 @@ console.log(obj.methodType+"<br><br><br><br><br><br><br><br><br><br>");
 for (step in steps=obj.step) 
     htmlForm=htmlForm+getSteps(steps[step]);
 
-htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) { $("#mainMessage").html(data);$("#SignUp2").hide();$("#SignUp1").hide();})}});</script>';
+htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) {alert(data);})}});</script>';
 return(htmlForm+"<script>"+theScript+"</script>");
 
 }}
