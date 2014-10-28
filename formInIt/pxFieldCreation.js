@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/pxField', function (req, res) {
-
+    var myField = require('./FormInIt.js');
     var values="";
     // var text=req.body.id+"</ br>";
     // text=text+req.body.title+"</ br>";
@@ -22,8 +22,13 @@ app.post('/pxField', function (req, res) {
     //text=text+req.body.fsize+"</ br>";
     //text=text+req.body.defValue+"</ br>";
     if (req.body.type=="List"){
-      values='"values1":["'+req.body.values.replace(/\r\n/g, '","')+'"]';}
-    res.send('{"id":"'+req.body.id+'", "title":"'+req.body.title+'", "placeholder":"'+req.body.placeholder+'", "type":"'+req.body.type+'", "required":'+req.body.required+', "fSize":"'+req.body.fSize+' "defValue":"'+req.body.defValue+'" '+values+'}');
+      values=' ,"values1":["'+req.body.values.replace(/\r\n/g, '","')+'"]';}
+      var txtField='{"id":"'+req.body.id+'", "title":"'+req.body.title+'", "placeholder":"'+req.body.placeholder+'", "type":"'+req.body.type+'", "required":'+req.body.required+', "fSize":"'+req.body.fSize+'", "defValue":"'+req.body.defValue+'"'+values+'}';
+    var obj = JSON.parse('{"id":"title", "title":"Titles", "placeholder":"Title", "type":"name", "required":true, "fSize":"35"}');
+     //res.send(txtField);
+    var obj = JSON.parse(txtField);
+    //var test= myField.getForm(obj);
+    res.send('<form name="sepelkaform" id="sepelkaform" method="post" class="form-horizontal" role="form">'+myField.getField(obj)+'</form>');
 });
 
 var server = app.listen(3000, function () {

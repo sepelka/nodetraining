@@ -66,7 +66,8 @@ function getValidations(field, validations) {
     return(validationTags);
 }
 
-function getField (field) {
+function getField(field) {
+
 var obj = field;
 
 ////console.log(obj);
@@ -99,7 +100,7 @@ var htmlFieldPost='</div></div>';
 
 "Name","Address", "Date", "Search", "Email", "Money", "Telephone", "Description", "Color","Password","List"
 
-switch(obj.type) {
+switch(obj.type.toLowerCase()) {
     case "name":
        htmlField=htmlFieldPre+'<input type="text" name="'+obj.id+'" id="'+obj.id+'" size="'+obj.fSize+'" '+required+' placeholder="'+placeholder+'" value="'+defValue+'" class="form-control '+viiReq+" "+validations+" "+dependencies+'"">'+htmlFieldPost;   
        break;
@@ -161,7 +162,7 @@ switch(obj.type) {
 }
 //console.log(htmlField+'\n');
 return (htmlField);
-}
+};
 
 function getGroups(groups) {
   var obj = groups;
@@ -185,9 +186,8 @@ function getSteps(steps) {
   return(htmlSteps);
 }
 
-module.exports = {
 
-  getForm : function (form) {
+var getForm = function (form) {
   //obj = JSON.parse(form);
 
   var obj = form;
@@ -217,7 +217,11 @@ console.log(obj.methodType+"<br><br><br><br><br><br><br><br><br><br>");
 for (step in steps=obj.step) 
     htmlForm=htmlForm+getSteps(steps[step]);
 
-htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) {alert(data);})}});</script>';
+htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) {$("#visZone").html(data);})}});</script>';
 return(htmlForm+"<script>"+theScript+"</script>");
 
-}}
+};
+
+module.exports.getField = getField;
+module.exports.getForm = getForm;
+
