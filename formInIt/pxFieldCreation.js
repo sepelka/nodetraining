@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
-//app.use(express.urlencoded());
+//app.use(express.urlencodxed());
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
@@ -28,7 +28,8 @@ app.post('/pxField', function (req, res) {
      //res.send(txtField);
     var obj = JSON.parse(txtField);
     //var test= myField.getForm(obj);
-    res.send('<form name="sepelkaform" id="sepelkaform" method="post" class="form-horizontal" role="form">'+myField.getField(obj)+'</form>');
+
+    res.send('<div class="btn-toolbar" role="toolbar"><button type="button" class="btn btn-default" style="float:right; margin-right:30px;" onclick=\'{$( "#visZone" ).animate({opacity: 0}, 1000, function() {$( "#visZone" ).html(""); $("#wiiWid1").animate({opacity: 1,left: "-=50",height: "toggle"}, 500);})}\'><span class="glyphicon glyphicon-cog"></span> <span class="sr-only">Config</span></button><div class="adsSep"></div><form name="sepelkaform" id="sepelkaform" method="post" class="form-horizontal" role="form">'+myField.getField(obj)+'</form></div>');
 });
 
 var server = app.listen(3000, function () {
@@ -39,3 +40,8 @@ var server = app.listen(3000, function () {
   console.log('Example app listening at http://%s:%s', host, port)
 
 })
+
+
+
+
+
