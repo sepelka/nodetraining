@@ -3,6 +3,16 @@
 var theScript="";
 
 
+function generateUUID(){
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+    });
+    return uuid;
+};
+
 function getDependencies(field, dependencies) {
   var dependencyTags="";
 
@@ -217,10 +227,11 @@ console.log(obj.methodType+"<br><br><br><br><br><br><br><br><br><br>");
 for (step in steps=obj.step) 
     htmlForm=htmlForm+getSteps(steps[step]);
 
-htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) {$( "#wiiWid1" ).animate({opacity: 0.25,left: "+=50",height: "toggle"}, 500, function() {$("#visZone").html(data).animate({opacity: 1}, 1000);})})}});</script>';
+htmlForm='<form name="'+id+'" id="'+id+'"method="'+method+'"class="form-horizontal" role="form">'+description+'<div class="viierror viitext">All fields in Yellow are mandatory. Please fill them in to continue.</div><div class="form-group">'+htmlForm+'</div><div style="width:100px;margin:auto"><button class="btn btn-primary" type="button" id="compID">Submit</button></div></form><script>$(\'#compID\').click(function (e) {if (!valInIt(\''+id+'\')){var request=$.ajax({type: "POST", data: $(\'#'+id+'\').serialize(),url: "'+submit+'", dataType: "html"});request.done( function(data) {$( "'+id+'_Wrap" ).animate({opacity: 0.25,left: "+=50",height: "toggle"}, 500, function() {$("#visZone").html(data).animate({opacity: 1}, 1000);})})}});</script>';
 return(htmlForm+"<script>"+theScript+"</script>");
 
 };
 
 module.exports.getField = getField;
 module.exports.getForm = getForm;
+module.exports.generateUUID = generateUUID;

@@ -32,6 +32,15 @@ app.post('/pxField', function (req, res) {
     res.send('<div class="btn-toolbar" role="toolbar"><button type="button" class="btn btn-default" style="float:right; margin-right:30px;" onclick=\'{$( "#visZone" ).animate({opacity: 0}, 1000, function() {$( "#visZone" ).html(""); $("#wiiWid1").animate({opacity: 1,left: "-=50",height: "toggle"}, 500);})}\'><span class="glyphicon glyphicon-cog"></span> <span class="sr-only">Config</span></button><div class="adsSep"></div><form name="sepelkaform" id="sepelkaform" method="post" class="form-horizontal" role="form">'+myField.getField(obj)+'</form></div>');
 });
 
+app.post('/pxWidget', function (req, res) {
+    var myWidget = require('./pxWidget.js');
+    var values=""
+
+    myWidget.createWidget("FiiField");
+    res.send(myWidget.createWidget("FiiField"));
+
+});
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address

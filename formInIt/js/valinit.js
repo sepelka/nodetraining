@@ -25,37 +25,39 @@ function inputOK(elementID){
   $(elementID).removeClass( "viiShowTime" );		
 }
 
-function addCorrection (inputID, type) {
-	$(inputID).addClass( "viiInputCorrection" );
+function addCorrection (formID, inputID, type) {
+	$('#'+formID+' input[id='+inputID.id+']').addClass( "viiInputCorrection" );
 	inputKO("#"+type+inputID.name);
-	removeMandatory  (inputID);
+	removeMandatory  (formID, inputID);
 	return (true);	
 }
-function addMandatory (inputID){
-	$(inputID).addClass( "viiInputMandatory" );
+function addMandatory (formID, inputID){
+	alert(inputID.id);
+	$('#'+formID+' input[id='+inputID.id+']').addClass( "viiInputMandatory" );
+	// inputID.addClass( "viiInputMandatory" );
 	inputKO("#vii"+inputID.name);
-	removeCorrection (inputID);
+	removeCorrection (formID, inputID);
 	return (true);	
 }
 
-function removeMandatory  (inputID){
-	$(inputID).removeClass( "viiInputMandatory" );
+function removeMandatory  (formID, inputID){
+	$('#'+formID+' input[id='+inputID.id+']').removeClass( "viiInputMandatory" );
 	inputOK("#vii"+inputID.name);
 }
 
-function removeCorrection (inputID){
-	$(inputID).removeClass( "viiInputCorrection" );
-	if ($(inputID).is("[class*='vii']"))
-	$($(inputID).attr('class').split(' ')).each(function() {
+function removeCorrection (formID, inputID){
+	$('#'+formID+' input[id='+inputID.id+']').removeClass( "viiInputCorrection" );
+	if ($('#'+formID+' input[id='+inputID.id+']').is("[class*='vii']"))
+	$($('#'+formID+' input[id='+inputID.id+']').attr('class').split(' ')).each(function() {
 		if (this.match("^viieq")){
 	      inputOK("#viieq"+inputID.name);}
 		else if (this.match("^vii")){ 
 		  inputOK("#"+this+inputID.name);}
 	});	
 }
-function removeError(inputID){
-	removeMandatory  (inputID);
-	removeCorrection (inputID);
+function removeError(formID, inputID){
+	removeMandatory  (formID, inputID);
+	removeCorrection (formID, inputID);
 	}
 
 function createDependency(inputSource, inputDest){
@@ -81,36 +83,36 @@ function valInIt(formID) {
 		   if ($(this).val()=="")
 		    {
 		      if ($(this).hasClass("vii"))
-			    viiST=addMandatory (this);
+			    viiST=addMandatory (formID, this);
 			  else
-			    removeError(this);
+			    removeError(formID, this);
 			}
 		   else
 			{
 			   if ($(this).hasClass("viiemail"))
 		        {
 			      if (email.test($(this).val()))
-			       removeError(this);
+			       removeError(formID, this);
 			      else
-			       viiCrST=addCorrection (this,"viiemail");
+			       viiCrST=addCorrection (formID, this,"viiemail");
 				}
 			   else
 			    {
 			      if ($(this).hasClass("viipwd"))
 		            {
 			          if (pwd.test($(this).val()))
-			           removeError(this);
+			           removeError(formID, this);
 			          else
-			           viiCrST=addCorrection (this,"viipwd");
+			           viiCrST=addCorrection (formID, this,"viipwd");
 					 }
 					else
 					 {   
 					   if ($(this).hasClass("viinum"))
 		                {
 			              if (num.test($(this).val()))
-			                removeError(this);
+			                removeError(formID, this);
 			              else
-			                viiCrST=addCorrection (this,"viinum");
+			                viiCrST=addCorrection (formID, this,"viinum");
 		                 }
 					    else
 						 {
@@ -121,9 +123,9 @@ function valInIt(formID) {
 			                 if (this.match("^viieq")){
 			                   if (this.substring(5,1)!="%" || this.substring(5,3)=="%F%"){
 							     if ($(myInput).val()==$("#"+this.substring(5).replace("%F%","")).val())
-							       removeError(myInput);
+							       removeError(formID, myInput);
 							     else
-							       viiCrST=addCorrection (myInput,"viieq");}}
+							       viiCrST=addCorrection (formID, myInput,"viieq");}}
 							 });
 						   }
 						  else 
@@ -141,7 +143,7 @@ function valInIt(formID) {
 
 						     }
 						    else
-						      removeError(this);  
+						      removeError(formID, this);  
 						   }
 					       
 						 }

@@ -49,12 +49,32 @@
   <div class="adsSep"></div>
   <div class="adsSep"></div>
   <div class="adsSep"></div>
+  <div id="">
+    <button type="button" class="btn btn-default btn-lg" onclick="createField('wiiWid1Wrapper', 'before')"><span class="glyphicon glyphicon-plus"></span> Create New Field</button>
+  </div>
   <div id="wiiWid1Wrapper" style="min-width:480px; max-width:800px; margin:auto">
   	<div id="wiiWid1" style="width:90%; margin:auto">
   	  <wiiGap1>
     </div>
     <div id="visZone" style="opacity:0">
     </div>  
-  </div>  
+  </div> 
+  <div id="">
+    <button type="button" class="btn btn-default btn-lg" onclick="createField('wiiWid1Wrapper', 'after')"><span class="glyphicon glyphicon-plus"></span> Create New Field</button>
+  </div> 
+  <script type="text/javascript">
+    function createField(fieldId, pos) {
+
+    var request=$.ajax({type: "POST", data:"", url: "http://127.0.0.1:3000/pxWidget", dataType: "html"});
+    request.done( function(data) 
+     {
+      if (pos=="after")
+        $("#"+fieldId).after(data);
+      else
+        $("#"+fieldId).before(data); 
+      //$( "#wiiWid1" ).animate({opacity: 0.25,left: "+=50",height: "toggle"}, 500,
+     }
+   )}
+</script>
   </body>
   </html>
