@@ -29,7 +29,7 @@ app.post('/pxField', function (req, res) {
     var obj = JSON.parse(txtField);
     //var test= myField.getForm(obj);
 
-    res.send('<div class="btn-toolbar" role="toolbar"><button type="button" class="btn btn-default" style="float:right; margin-right:30px;" onclick=\'{$( "#visZone" ).animate({opacity: 0}, 1000, function() {$( "#visZone" ).html(""); $("#wiiWid1").animate({opacity: 1,left: "-=50",height: "toggle"}, 500);})}\'><span class="glyphicon glyphicon-cog"></span> <span class="sr-only">Config</span></button><div class="adsSep"></div><form name="sepelkaform" id="sepelkaform" method="post" class="form-horizontal" role="form">'+myField.getField(obj)+'</form></div>');
+    res.send(myField.getField(obj));
 });
 
 app.post('/pxWidget', function (req, res) {

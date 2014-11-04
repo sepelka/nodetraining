@@ -75,6 +75,24 @@
       //$( "#wiiWid1" ).animate({opacity: 0.25,left: "+=50",height: "toggle"}, 500,
      }
    )}
+   function checkWidget(formID)
+     {
+       if (!valInIt(formID))
+        {
+          var request=$.ajax({type: "POST", data: $('#'+formID).serialize(),url: "http://127.0.0.1:3000/pxField", dataType: "html"});
+          request.done( function(data) 
+            {
+              $('#'+formID+"_Conf").animate(
+                {opacity: 0.25,left: "+=50",height: "toggle"}, 500, function()
+                  {
+                    $('#'+formID+"_Vis" ).html(data).animate({opacity: 1}, 1000);
+                  }
+               )
+            })
+        }
+      }
+  function confWidget(formID)
+  {$('#'+formID+"_Vis").animate({opacity: 0}, 1000, function() {$('#'+formID+"_Vis").html(""); $('#'+formID+"_Conf").animate({opacity: 1,left: "-=50",height: "toggle"}, 500);})}
 </script>
   </body>
   </html>
