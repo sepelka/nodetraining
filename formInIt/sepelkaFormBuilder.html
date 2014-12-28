@@ -50,7 +50,7 @@
   <div class="adsSep"></div>
   <div class="adsSep"></div>
   <div id="">
-    <button type="button" class="btn btn-default btn-lg" onclick="createField('wiiWid1Wrapper', 'before')"><span class="glyphicon glyphicon-plus"></span> Create New Field</button>
+    <button type="button" class="btn btn-default btn-lg" onclick="createField('pxField','wiiWid1Wrapper', 'before')"><span class="glyphicon glyphicon-plus"></span> Create New Field</button>
   </div>
   <div id="wiiWid1Wrapper" style="min-width:480px; max-width:800px; margin:auto">
   	<div id="wiiWid1" style="width:90%; margin:auto">
@@ -60,12 +60,12 @@
     </div>  
   </div> 
   <div id="">
-    <button type="button" class="btn btn-default btn-lg" onclick="createField('wiiWid1Wrapper', 'after')"><span class="glyphicon glyphicon-plus"></span> Create New Field</button>
+    <button type="button" class="btn btn-default btn-lg" onclick="createField('pxField','wiiWid1Wrapper', 'after')"><span class="glyphicon glyphicon-plus"></span> Create New Field</button>
   </div> 
   <script type="text/javascript">
-    function createField(fieldId, pos) {
+    function createField(widgId, fieldId, pos) {
 
-    var request=$.ajax({type: "POST", data:"", url: "http://127.0.0.1:3000/pxWidget", dataType: "html"});
+    var request=$.ajax({type: "GET", data:"", url: "http://127.0.0.1:3000/pxWidget?id="+widgId, dataType: "html"});
     request.done( function(data) 
      {
       if (pos=="after")
