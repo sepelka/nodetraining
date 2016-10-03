@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TIME TO SIGN UP</title>
+<title>TIMxO SIGN UP</title>
 <link rel="stylesheet" type="text/css" media="all" href="css/QRCode.css">
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/valinit.css" rel="stylesheet" media="screen">
@@ -85,14 +85,22 @@
               $('#'+formID+"_Conf").animate(
                 {opacity: 0.25,left: "+=50",height: "toggle"}, 500, function()
                   {
-                    $('#'+formID+"_Vis" ).html(data).animate({opacity: 1}, 1000);
+                    $('#'+formID+"_Vis" ).html(data)
+                    $('#'+formID+"_VisWrap" ).animate({opacity: 1}, 1000);
                   }
                )
             })
         }
       }
   function confWidget(formID)
-  {$('#'+formID+"_Vis").animate({opacity: 0}, 1000, function() {$('#'+formID+"_Vis").html(""); $('#'+formID+"_Conf").animate({opacity: 1,left: "-=50",height: "toggle"}, 500);})}
+  {$('#'+formID+"_VisWrap").animate({opacity: 0}, 1000, function() {$('#'+formID+"_Vis").html(""); $('#'+formID+"_Conf").animate({opacity: 1,left: "-=50",height: "toggle"}, 500);})}
+  function delWidget(formID)
+  {$('#'+formID+"_Wrap").animate(
+                {opacity: 0.1,left: "+=50",height: "toggle"}, 500, function()
+                  {
+                    $('#'+formID+"_Wrap").remove();
+                  });
+  }
 </script>
   </body>
   </html>

@@ -13,6 +13,7 @@ mongoose.connect("mongodb://dogen.mongohq.com:10065/pressxine", function (err, r
 //load all models in models file
 fs.readdirSync(__dirname + '/models').forEach(function (filename){
   if (~filename.indexOf('.js')) require(__dirname + '/models/' + filename);
+console.log('loading module: '+ filename);
 });
 
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -57,7 +58,8 @@ app.get('/pxWidget/:id', function (req, res) {
 });
 
 app.get('/pxWidget', function (req, res) {
-    var myWidget = require('./pxWidget.js');
+    console.log('pues aqui en donde parece que tenemos el problema');
+    var myWidget = require(__dirname + '/pxWidget.js');
     var values="";
     var widId="FiiField";
 
